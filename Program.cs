@@ -4,7 +4,7 @@
 	{
 		public class MakeArrayStrictlyIncreasing
 		{
-			private int BisectRight(int[] arr, int value)
+			private int BinarySearch(int[] arr, int value)
 			{
 				int left = 0;
 				int right = arr.Length;
@@ -42,7 +42,7 @@
 							}
 							newDp[arr1[i]] = Math.Min(newDp[arr1[i]], dp[pair.Key]);
 						}
-						int rightIdx = BisectRight(arr2, pair.Key);
+						int rightIdx = BinarySearch(arr2, pair.Key);
 						if (rightIdx < arr2.Length)
 						{
 							if (!newDp.ContainsKey(arr2[rightIdx]))
@@ -54,12 +54,12 @@
 					}
 					dp = newDp;
 				}
-				int makeArrayIncreasingSteps = int.MaxValue;
+				int minArrayIncreasingCount = int.MaxValue;
 				foreach(KeyValuePair<int, int> pair in dp)
 				{
-					makeArrayIncreasingSteps = Math.Min(makeArrayIncreasingSteps, pair.Value);
+					minArrayIncreasingCount = Math.Min(minArrayIncreasingCount, pair.Value);
 				}
-				return makeArrayIncreasingSteps == int.MaxValue ? -1 : makeArrayIncreasingSteps;
+				return minArrayIncreasingCount == int.MaxValue ? -1 : minArrayIncreasingCount;
 			}
 		}
 
